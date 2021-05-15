@@ -1,7 +1,11 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import './index.css'
-import App from './components/App'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './index.css';
+import App from './components/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import middleware from './middleware';
+import reducer from './reducers'
 
 function ColorfulBorder() {
   return (
@@ -16,6 +20,11 @@ function ColorfulBorder() {
     </React.Fragment>
   )
 }
+
+const store = createStore(
+  middleware, 
+  reducer
+)
 
 ReactDOM.render(
   <React.StrictMode>
