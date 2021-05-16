@@ -22,14 +22,15 @@ function ColorfulBorder() {
 }
 
 const store = createStore(
-  middleware, 
-  reducer
+  reducer,
+  middleware 
 )
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <ColorfulBorder />
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 )
+
