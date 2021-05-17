@@ -25,8 +25,9 @@ export function handleToggleLike (info) {
   //API call to add like to database
 
   return (dispatch) => {
-    saveLikeToggle(info) //API call updates database
-      .then(() => dispatch(toggleLike(info))) //update redux state
+    dispatch(toggleLike(info))
+    saveLikeToggle(info)
+
   }
 
 }

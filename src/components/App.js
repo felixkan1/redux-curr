@@ -10,7 +10,7 @@ import CreateTweet from './createTweet';
 
 export default function App () {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.authedUser === null);
+  const loading = useSelector((state) => state.tweets === null);
 
   React.useEffect(() => {
     dispatch(handleInitialData())
@@ -21,16 +21,17 @@ export default function App () {
     <Router>
       <div className='container'>
         <Nav/>
-        <div>
-          <Route path='/' exact>
-            <Home/>
-          </Route>
-          <Route path='/new' exact>
-            <CreateTweet/>
-          </Route>
-
-
-        </div>
+        {loading === true ? 
+          null
+          : <div>
+              <Route path='/' exact>
+                <Home/>
+              </Route>
+              <Route path='/new' exact>
+                <CreateTweet/>
+              </Route>
+            </div>
+        }
       </div>
     </Router>
   )

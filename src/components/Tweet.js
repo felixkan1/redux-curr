@@ -25,7 +25,7 @@ export function Tweet (props) {
   //3. update user
 
   return (
-    <li key={id} >
+    <li key={id} className='tweet-container'>
       <a  href='/new' className='tweet'>
         <img 
           className='avatar'

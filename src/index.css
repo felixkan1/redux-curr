@@ -43,7 +43,6 @@ a {
 
 li {
   list-style-type: none;
-  
 }
 
 .border-container {
@@ -84,7 +83,7 @@ li {
 
 }
 
-li {
+.tweet-container {
   border: 1px solid #dad7d7;
   margin-bottom: 20px;
 }

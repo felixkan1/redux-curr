@@ -6,10 +6,11 @@ import {TiArrowBackOutline, TiHeartOutline, TiHeart} from 'react-icons/ti';
 import {Tweet} from './Tweet'
 
 export default function Home () {
-  const authedUser = useSelector((state) => state.authedUser)
-  const tweets = useSelector((state) => state.tweets)
+  const authedUser = useSelector((state) => state.authedUser);
+  const tweets = useSelector((state) => state.tweets);
   const sortedTweets = Object.keys(tweets).map((id) => tweets[id])
                         .sort((a,b) => b.timestamp - a.timestamp)
+
   const users = useSelector((state) => state.users)
 
 

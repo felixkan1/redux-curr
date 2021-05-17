@@ -4,8 +4,10 @@ import './index.css';
 import App from './components/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import LoadingBar from 'react-redux-loading'
 import middleware from './middleware';
-import reducer from './reducers'
+import reducer from './reducers';
+
 
 function ColorfulBorder() {
   return (
@@ -17,6 +19,7 @@ function ColorfulBorder() {
         <li className='border-item' style={{ background: 'var(--yellow)' }} />
         <li className='border-item' style={{ background: 'var(--aqua)' }} />
       </ul>
+      <LoadingBar/>
     </React.Fragment>
   )
 }
