@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {handleInitialData} from '../actions/home'
 import Nav from './Nav'
 import Home from './Home';
-import Tweet from './Tweet';
+import CreateTweet from './createTweet';
+
 
 
 export default function App () {
@@ -25,7 +26,7 @@ export default function App () {
             <Home/>
           </Route>
           <Route path='/new' exact>
-            <Tweet/>
+            <CreateTweet/>
           </Route>
 
 

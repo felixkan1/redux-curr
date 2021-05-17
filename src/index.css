@@ -43,6 +43,7 @@ a {
 
 li {
   list-style-type: none;
+  
 }
 
 .border-container {
@@ -83,13 +84,18 @@ li {
 
 }
 
+li {
+  border: 1px solid #dad7d7;
+  margin-bottom: 20px;
+}
+
+
 .tweet {
   display: flex;
   width: 100%;
   max-width: 590px;
   padding: 10px;
   margin: 25px auto;
-  border: 1px solid #dad7d7;
   border-radius: 3px;
   cursor: pointer;
   color: #dad7d7;
@@ -101,19 +107,46 @@ li {
   margin: 10px;
 }
 
-.replying-to {
-  color: #969696;
-  font-size: 13px;
-}
-
-.tweet-icon {
+.tweet-icons {
   font-size: 27px;
   color: #697784;
-  cursor: pointer;
 }
 
-.tweet-icon:hover {
+.heart-button, .replying-to {
+  border: none;
+  background: transparent;
+}
+
+.replying-to {
+  margin: 0;
+  padding: 0;
+  color: #969696;
+  cursor: pointer;
+  
+}
+
+.heart-button {
+  padding: 0 3px;
+  color: inherit;
+  cursor: pointer;
+  font-size: 27px;
+}
+
+.heart-button.true {
+  color: rgb(224, 36, 94);
+}
+
+.heart-button.true:hover {
+  color: rgb(224, 36, 94);
+}
+
+.heart-button:hover {
   color: var(--pink);
+}
+
+.tweet-icons>svg:hover {
+  color: var(--pink);
+  fill: var(--pink)
 }
 
 .tweet-icons>span {
@@ -124,15 +157,21 @@ li {
   vertical-align: middle;
 }
 
+.liked {
+  color: rgb(224, 36, 94);
+}
+
+.liked:hover {
+  color: rgb(224, 36, 94)!important;
+}
+
 
 .time {
   color: #969696;
   font-size: 13px;
 }
 
-
 button {
-  border: none;
-  background-color: transparent;
-  padding: 0;
+  z-index: 999;
 }
+
