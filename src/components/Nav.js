@@ -7,7 +7,7 @@ export default function Nav () {
       <NavLink to='/' exact activeClassName='active'>
         Home
       </NavLink>
-      <NavLink to='/new' exact activeClassName='active'>
+      <NavLink to='/new' activeClassName='active'>
         New Tweet
       </NavLink>
 

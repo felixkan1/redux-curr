@@ -1,4 +1,4 @@
-import {RECEIVE_USERS} from '../actions/users';
+import {RECEIVE_USERS, ADD_TWEET_TO_USER} from '../actions/users';
 
 
 export default function users (state={}, action) {
@@ -8,6 +8,14 @@ export default function users (state={}, action) {
         ...state,
         ...action.users
       };
+    case ADD_TWEET_TO_USER:
+      return {
+        ...state,
+        [action.author]: {
+          ...state[action.author],
+          tweets: state[action.author].tweets.concat([action.tweetID])
+        }
+      }
     default:
       return state;
   }

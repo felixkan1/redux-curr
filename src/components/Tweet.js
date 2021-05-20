@@ -1,12 +1,16 @@
 import * as React from 'react';
 import {TiArrowBackOutline, TiHeartOutline, TiHeart} from 'react-icons/ti';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {handleToggleLike} from '../actions/tweets'
+import {Link} from 'react-router-dom'
 
-export function Tweet (props) {
-  const {id, author, replyingTo, likes, replies, timestamp, text} = props.tweet;
+export function Tweet ({id}) {
+  const tweets = useSelector((state) => state.tweets);
+  const {author, replyingTo, likes, replies, timestamp, text} = tweets[id];
   const dispatch = useDispatch();
-  const {users, tweets, authedUser} = props
+
+  const authedUser = useSelector((state) => state.authedUser);
+  const users = useSelector((state) => state.users);
   const time = timeConverter(timestamp);
 
   const liked = likes.includes(authedUser);
@@ -26,7 +30,7 @@ export function Tweet (props) {
 
   return (
     <li key={id} className='tweet-container'>
-      <a  href='/new' className='tweet'>
+      <Link to={`/tweet/${id}`} className='tweet'>
         <img 
           className='avatar'
           src={users[author].avatarURL}
@@ -49,7 +53,7 @@ export function Tweet (props) {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
       <div className='tweet-icons'>
               <TiArrowBackOutline/>
               <span>{replies.length}</span>

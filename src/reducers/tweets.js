@@ -1,4 +1,4 @@
-import {RECEIVE_TWEETS, TOGGLE_LIKE} from '../actions/tweets';
+import {RECEIVE_TWEETS, TOGGLE_LIKE, ADD_TWEET, ADD_REPLY} from '../actions/tweets';
 
 
 export default function tweets (state={}, action) {
@@ -20,6 +20,25 @@ export default function tweets (state={}, action) {
             
         }
       }
+    case ADD_TWEET: 
+    
+      return {
+        ...state,
+        [action.tweet.id]: {
+          ...action.tweet
+        }
+        
+      }
+
+    case ADD_REPLY:
+      return {
+        ...state,
+        [action.replyingToID]: {
+          ...state[action.replyingToID],
+          replies: state[action.replyingToID].replies.concat(action.replyID)
+        }
+      }
+
     default:
       return state;
   }

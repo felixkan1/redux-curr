@@ -14,35 +14,22 @@ export default function Home () {
   const users = useSelector((state) => state.users)
 
 
-  React.useEffect(() => {
-    console.log('tweets', tweets);
-  }, [tweets, sortedTweets])
-  
-
   return(
-    <Router>
-
-      <div className='tweets-container'>
-        <ul className='tweet-list'>
-          {sortedTweets.map((tweet) => {
+    <div className='tweets-container'>
+      <ul className='tweet-list'>
+        {sortedTweets.map((tweet) => {
 
 
-            return(
-              <React.Fragment>
-                <Tweet 
-                  tweet={tweet} 
-                  authedUser={authedUser} 
-                  tweets={tweets}
-                  users={users}
-                />
-              </React.Fragment>
-            )
-          })}
-        </ul>
-
-      </div>
-
-    </Router>
+          return(
+            <React.Fragment>
+              <Tweet 
+                id={tweet.id} 
+              />
+            </React.Fragment>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 
