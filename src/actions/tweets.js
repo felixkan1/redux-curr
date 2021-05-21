@@ -60,7 +60,9 @@ export function handleAddTweet (tweetInfo) {
     return saveTweet(tweetInfo)
           .then((tweet) => {
             dispatch(addTweet(tweet));
-            dispatch(addReply(tweet.replyingTo, tweet.id))
+            if(tweet.replyingTo){
+              dispatch(addReply(tweet.replyingTo, tweet.id))
+            }
             dispatch(addTweetToUser(tweet.id, tweet.author)); 
             dispatch(hideLoading())
           })

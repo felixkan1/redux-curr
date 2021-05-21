@@ -14,12 +14,16 @@ export default function CreateTweet (props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    history.push('/')
+    if(replyingTo === "") {
+      history.push('/')
+    }else {
+      history.push(`/tweet/${replyingTo}`)
+    }
    
 
     //dispatch new tweet (text, author, replyingTo)
     dispatch(handleAddTweet({text, author, replyingTo }))
-
+    setText("");
   }
 
   const isDisabled = () => {

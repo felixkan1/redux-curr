@@ -9,7 +9,12 @@ export default function Reply () {
   const tweets = useSelector((state) => state.tweets);
   const { id } = useParams();
   const tweet = tweets[id];
-  const replies = tweet.replies;
+  const replies = tweet.replies; //array of reply IDs
+  const sortedTweets = replies.map(id => tweets[id])
+                        .sort((a,b) => b.timestamp - a.timestamp)
+  
+
+
 
   if(!tweet) {
     return <p>This tweet doesn't exist</p>
@@ -19,11 +24,11 @@ export default function Reply () {
     <React.Fragment>
       <Tweet id={tweet.id}></Tweet>
       <CreateTweet replyingTo={tweet.id} />
-      {replies.map((id) => {
+      {sortedTweets.map((tweet) => {
           return(
             <React.Fragment>
               <Tweet 
-                id={id} 
+                id={tweet.id} 
               />
             </React.Fragment>
           )
