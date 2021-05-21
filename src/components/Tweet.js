@@ -1,26 +1,32 @@
 import * as React from 'react';
 import {TiArrowBackOutline, TiHeartOutline, TiHeart} from 'react-icons/ti';
+import {formatDate} from '../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import {handleToggleLike} from '../actions/tweets'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 export function Tweet ({id}) {
   const tweets = useSelector((state) => state.tweets);
   const {author, replyingTo, likes, replies, timestamp, text} = tweets[id];
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const authedUser = useSelector((state) => state.authedUser);
   const users = useSelector((state) => state.users);
-  const time = timeConverter(timestamp);
+  const time = formatDate(timestamp);
 
   const liked = likes.includes(authedUser);
 
   const handleLike = (evt, info) => {
-    evt.stopPropagation();
+    evt.preventDefault();
     console.log("like info",info, evt);
 
     dispatch(handleToggleLike(info))
 
+  }
+
+  const handleReply = (evt,id) => {
+    evt.preventDefault();
+    history.pushState(`/tweet/${id}`)
   }
 
   //handle click on like
@@ -29,32 +35,26 @@ export function Tweet ({id}) {
   //3. update user
 
   return (
-    <li key={id} className='tweet-container'>
+    
       <Link to={`/tweet/${id}`} className='tweet'>
         <img 
           className='avatar'
           src={users[author].avatarURL}
           alt={`Avatar of ${users[author].name}`}
         />
-        <div className='tweet-data'>
-          <div className='tweet-info'>
-            <div>
-              <span>{users[author].name}</span>
-              <div className='time'>{time}</div>
+        <div className='tweet-info'>
+          <div>
+            <span>{users[author].name}</span>
+            <div className='time'>{time}</div>
 
-              {replyingTo &&
-                  <button className='replying-to'>
-                    replying to @{tweets[replyingTo].author}
-                </button>   
-              }
-              <p>
-                {text}
-              </p>
-            </div>
-          </div>
-        </div>
-      </Link>
-      <div className='tweet-icons'>
+            {replyingTo &&
+                <button className='replying-to'>
+                  replying to @{tweets[replyingTo].author}
+              </button>   
+            }
+            <p>{text}</p>
+          </div>      
+          <div className='tweet-icons'>
               <TiArrowBackOutline/>
               <span>{replies.length}</span>
               <button 
@@ -70,11 +70,12 @@ export function Tweet ({id}) {
           
             
               <span>{likes.length}</span>
+            </div>
         </div>
+      </Link> 
 
 
-
-    </li>
+   
   )
 
 

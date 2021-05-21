@@ -102,6 +102,7 @@ li {
   border-radius: 3px;
   cursor: pointer;
   color: #dad7d7;
+  border: 1px solid #dad7d7;
 }
 
 .avatar{
